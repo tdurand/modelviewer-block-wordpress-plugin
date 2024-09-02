@@ -1,9 +1,9 @@
 {
-	"name": "copyright-date-block",
+	"name": "modelviewer-webcomponent",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
-	"license": "GPL-2.0-or-later",
+	"description": "Block to display a 3D model using the <model-viewer> Web Component",
+	"author": "Thibault Durand",
+	"license": "MIT",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",

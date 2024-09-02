@@ -1,17 +1,4 @@
 <?php
-/**
- * Plugin Name:       Copyright Date Block
- * Description:       Example block scaffolded with Create Block tool.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       copyright-date-block
- *
- * @package CreateBlock
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -67,7 +54,7 @@ function add_module_type_to_model_viewer_editor($tag, $handle, $src) {
     return $tag;
 }
 
-function create_block_copyright_date_block_block_init() {
+function create_block_modelviewer_init() {
 	register_block_type( __DIR__ . '/build' );
 	// Register and enqueue the script
 	add_action('enqueue_block_assets', 'enqueue_model_viewer_script_editor');
@@ -76,5 +63,5 @@ function create_block_copyright_date_block_block_init() {
 	add_filter( 'wp_check_filetype_and_ext', "allow_glb_upload_check", 10, 5 );
 }
 
-add_action( 'init', 'create_block_copyright_date_block_block_init' );
+add_action( 'init', 'create_block_modelviewer_init' );
 

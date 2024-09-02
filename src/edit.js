@@ -9,7 +9,6 @@ export default function Edit({ attributes, setAttributes }) {
 
 	// Function to handle file selection
 	const onSelectFile = (media) => {
-		console.log('select file')
 		setAttributes({ fileUrl: media.url });
 	};
 
@@ -30,12 +29,6 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</MediaUploadCheck>
 				}
-
-				{/* MODEL DOES NOT DISPLAY MODEL VIEWER NOT AVAILABLE, because in IFRAME
-					look into "enqueue_block_editor_assets" to load script in editor context ??
-
-					Also see why not instant when clicking Upload file for file already uploaded
-				*/}
 
 				{fileUrl && (
 					<model-viewer
