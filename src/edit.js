@@ -1,7 +1,6 @@
 import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
 
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
@@ -76,16 +75,20 @@ export default function Edit({ attributes, setAttributes }) {
 export function save({ attributes }) {
 	const { fileUrl } = attributes;
 
+	const blockProps = useBlockProps.save();
+	console.log(blockProps);
+
+	// Need to explicitely set camera-controls="true" and auto-rotate="true"
+	// otherwise jsx does not transform it to proper html attributes
+
 	return (
-		<div>
-			{fileUrl && (
-				<model-viewer
-					src={fileUrl}
-					camera-controls
-					auto-rotate
-					loading="auto"
-				></model-viewer>
-			)}
+		<div style={{ width: "300px", height: "300px" }}>
+			<model-viewer
+				src={fileUrl}
+				camera-controls="true"
+				auto-rotate="true"
+				loading="auto"
+			></model-viewer>
 		</div>
 	);
 }
