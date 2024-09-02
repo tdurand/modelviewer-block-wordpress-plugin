@@ -16,17 +16,7 @@ To run `wp-env` and set up a local WordPress environment, follow these steps:
    npm install -g @wordpress/env
    ```
 
-4. Once the installation is complete, you can initialize `wp-env` by running the following command:
-
-   ```
-   wp-env init
-   ```
-
-   This will create a `.wp-env.json` file in your project directory.
-
-5. Customize your environment settings in the `.wp-env.json` file. You can specify the WordPress version, plugins, themes, and other configuration options.
-
-6. Start the local WordPress environment by running the following command:
+4. Start the local WordPress environment by running the following command:
 
    ```
    wp-env start
@@ -34,9 +24,7 @@ To run `wp-env` and set up a local WordPress environment, follow these steps:
 
    This will download the specified WordPress version, install the plugins and themes, and start a local development server.
 
-7. Access your local WordPress site by opening your web browser and navigating to `http://localhost:8888`.
-
-That's it! You now have a local WordPress environment set up using `wp-env`. Happy coding!
+5. Access your local WordPress site by opening your web browser and navigating to `http://localhost:8888`. Log into the WordPress dashboard using username `admin` and password `password`.
 
 ## Building and installing the WordPress Custom Block
 

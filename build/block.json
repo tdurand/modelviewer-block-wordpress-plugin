@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/modelviewer-block",
+  "version": "0.1.0",
+  "title": "Model Viewer Block",
+  "category": "widgets",
+  "description": "A block to display a 3D model",
+  "attributes": {
+    "fileUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "modelviewer-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
