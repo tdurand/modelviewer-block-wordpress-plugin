@@ -36,6 +36,7 @@ function Edit({
   const {
     fileUrl
   } = attributes;
+  console.log(fileUrl);
 
   // Function to handle file selection
   const onSelectFile = media => {
@@ -76,16 +77,7 @@ function Edit({
       onClick: open,
       variant: "primary"
     }, fileUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Change File', 'text-domain') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Upload File', 'text-domain'))
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("model-viewer", {
-    src: "http://localhost:8889/wp-content/uploads/2024/09/map3d-nhan.glb",
-    style: {
-      width: "100%",
-      height: "300px"
-    },
-    "camera-controls": true,
-    "auto-rotate": true,
-    loading: "auto"
-  }), fileUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Uploaded File URL:', 'text-domain'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  })), fileUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Uploaded File URL:', 'text-domain'), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: fileUrl,
     target: "_blank",
     rel: "noopener noreferrer"
@@ -97,7 +89,12 @@ function save({
   const {
     fileUrl
   } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, fileUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "TODO"));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, fileUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("model-viewer", {
+    src: fileUrl,
+    "camera-controls": true,
+    "auto-rotate": true,
+    loading: "auto"
+  }));
 }
 
 /***/ }),
@@ -114,38 +111,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
-
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-
-
-/**
- * Internal dependencies
- */
 
 
 
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
+
+
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"]
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _edit__WEBPACK_IMPORTED_MODULE_2__.save
 });
 
 /***/ }),
@@ -228,7 +204,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/copyright-date-block","version":"0.1.0","title":"Copyright Date Block","category":"widgets","description":"Display your site’s copyright date.","example":{},"supports":{"color":{"background":false,"text":true},"html":false,"typography":{"fontSize":true}},"textdomain":"copyright-date-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/copyright-date-block","version":"0.1.0","title":"Copyright Date Block","category":"widgets","description":"Display your site’s copyright date.","attributes":{"fileUrl":{"type":"string","default":""}},"textdomain":"copyright-date-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

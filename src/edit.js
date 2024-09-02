@@ -6,6 +6,7 @@ import { useState } from '@wordpress/element';
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
 	const { fileUrl } = attributes;
+	console.log(fileUrl);
 
 	// Function to handle file selection
 	const onSelectFile = (media) => {
@@ -36,6 +37,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					Also see why not instant when clicking Upload file for file already uploaded
 				*/}
+
 				{fileUrl && (
 					<model-viewer
 						src={fileUrl}
@@ -59,14 +61,6 @@ export default function Edit({ attributes, setAttributes }) {
 								)}
 							/>
 						</MediaUploadCheck>
-						{/* JUST TO TEST THAT MODEL VIEWER IS AVAILABLE HERE */}
-						<model-viewer
-							src="http://localhost:8889/wp-content/uploads/2024/09/map3d-nhan.glb"
-							style={{ width: "100%", height: "300px" }}
-							camera-controls
-							auto-rotate
-							loading="auto"
-						></model-viewer>
 						{fileUrl && (
 							<p>
 								{__('Uploaded File URL:', 'text-domain')} <a href={fileUrl} target="_blank" rel="noopener noreferrer">{fileUrl}</a>
@@ -85,7 +79,12 @@ export function save({ attributes }) {
 	return (
 		<div>
 			{fileUrl && (
-				<div>TODO</div>
+				<model-viewer
+					src={fileUrl}
+					camera-controls
+					auto-rotate
+					loading="auto"
+				></model-viewer>
 			)}
 		</div>
 	);

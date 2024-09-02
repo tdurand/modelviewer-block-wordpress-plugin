@@ -46,22 +46,35 @@ function add_module_type_to_model_viewer($tag, $handle, $src) {
     return $tag;
 }
 
+function enqueue_model_viewer_script_editor() {
+	// Enqueue the script
+	wp_enqueue_script(
+		'model-viewer-editor-script', // Handle for the script
+		'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js', // Script URL
+		array(), // Dependencies
+		null, // Version number (null to avoid cache issues)
+		true // Load in the footer (true)
+	);
+}
+
+function add_module_type_to_model_viewer_editor($tag, $handle, $src) {
+    // Check if the handle matches the one used in wp_enqueue_script
+    if ('model-viewer-editor-script' === $handle) {
+        // Modify the script tag to add type="module"
+        $tag = '<script type="module" id="blabla" src="' . esc_url($src) . '"></script>';
+    }
+
+    return $tag;
+}
+
 function create_block_copyright_date_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
 	// Register and enqueue the script
-    wp_enqueue_script(
-        'model-viewer-script', // Handle for the script
-        'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js', // Script URL
-        array(), // Dependencies
-        null, // Version number (null to avoid cache issues)
-        true // Load in the footer (true)
-    );
-	// Hook the filter to 'script_loader_tag'
-	add_filter('script_loader_tag', 'add_module_type_to_model_viewer', 10, 3);
+	add_action('enqueue_block_assets', 'enqueue_model_viewer_script_editor');
+	add_filter('script_loader_tag', 'add_module_type_to_model_viewer_editor', 10, 3);
+	add_filter('upload_mimes', 'allow_glb_uploads');
+	add_filter( 'wp_check_filetype_and_ext', "allow_glb_upload_check", 10, 5 );
 }
 
 add_action( 'init', 'create_block_copyright_date_block_block_init' );
-add_filter('upload_mimes', 'allow_glb_uploads');
-if ( version_compare( $GLOBALS['wp_version'], '5.1' ) >= 0 ) {
-	add_filter( 'wp_check_filetype_and_ext', "allow_glb_upload_check", 10, 5 );
-} else { add_filter( 'wp_check_filetype_and_ext', "allow_glb_upload_check", 10, 4 ); }
+
